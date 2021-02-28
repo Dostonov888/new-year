@@ -1,34 +1,34 @@
+let container = document.querySelector('.container');
 
-
-Data = new Date();
-Day = Data.getDay();
-Hour = Data.getHours();
-Minutes = Data.getMinutes();
-Seconds = Data.getSeconds();
-Month = new Date("December 31, 2021");
-if (Hour > 3 && Hour < 12) document.writeln("Доброе утро!");
-if (Hour > 11 && Hour < 19) document.writeln("Добрый день!");
-if (Hour > 18 && Hour < 24) document.writeln("Добрый вечер!");
-if (Hour > 23 || Hour < 4) document.writeln("Привет полуночникам!");
-
-
-if (Day == 0) document.writeln("Сегодня: Воскресенье.");
-if (Day == 1) document.writeln("Сегодня: Понедельник.");
-if (Day == 2) document.writeln("Сегодня: Вторник.");
-if (Day == 3) document.writeln("Сегодня: Среда.");
-if (Day == 4) document.writeln("Сегодня: Четверг.");
-if (Day == 5) document.writeln("Сегодня: Пятница.");
-if (Day == 6) document.writeln("Сегодня: Суббота.");
-
-msPerDay = 24 * 60 * 60 * 1000;
-NewYear = (Month.getTime() - Data.getTime()) / msPerDay;
-NewYearSec = (parseInt(NewYear));
+let data = new Date(),
+    day = data.getDay(),
+    hour = data.getHours(),
+    minutes = data.getMinutes(),
+    seconds = data.getSeconds(),
+    month = new Date("December 31, 2021");
 //Добрый день (утро, вечер, ночь в зависимости от времени суток)
+if (hour > 3 && hour < 12) { container.insertAdjacentHTML('afterbegin', '<p>Доброе утро!</p>'); }
+if (hour > 11 && hour < 19) { container.insertAdjacentHTML('afterbegin', '<p>Добрый день!</p>'); }
+if (hour > 18 && hour < 24) { container.insertAdjacentHTML('afterbegin', '<p>Добрый вечер!</p>'); }
+if (hour > 23 || hour < 4) { container.insertAdjacentHTML('afterbegin', '<p>Привет полуночникам!</p>'); }
 //Сегодня: Понедельник
-//Текущее время:12:05:15 PM
+let myDay = [' Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+container.insertAdjacentHTML('afterend', `<p>Сегодня: </p>${myDay[day]}`);
+
 //До нового года осталось 175 дней
-document.writeln(' До нового года осталось ' + NewYearSec + ' дней.  ');
-document.write(" Текущее время: " + Hour + ":" + Minutes + ":" + Seconds);
+let msPerDay = 24 * 60 * 60 * 1000;
+let newYear = (month.getTime() - data.getTime()) / msPerDay;
+let newYearSec = (parseInt(newYear));
+container.after(' До нового года осталось ' + newYearSec + ' дней.  ');
+//Текущее время:12:05:15 PM
+if (hour <= 9) { hour = `0${hour}`; }
+if (minutes <= 9) { minutes = `0${minutes}`; }
+if (seconds <= 9) { seconds = `0${seconds}`; }
+container.append(` Текущее время: ${hour}:${minutes}:${seconds}`);
+
+
+
+
 
 
 
